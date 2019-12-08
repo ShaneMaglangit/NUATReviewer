@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorAccent">@color/secondaryLightColor</item>
+    </style>
+
+    <style name="InverseButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/secondaryColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+</resources>
