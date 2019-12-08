@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/button_sample_test"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/button_resources"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_sample_test" />
 
     <TextView
-        android:id="@+id/text_arithmetic"
+        android:id="@+id/text_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/button_operations"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -73,11 +73,11 @@
         app:layout_constraintEnd_toStartOf="@+id/button_negative"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/text_arithmetic" />
+        app:layout_constraintTop_toBottomOf="@+id/text_description" />
 
     <Button
         android:id="@+id/button_negative"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Negative Numbers"
@@ -91,7 +91,7 @@
 
     <Button
         android:id="@+id/button_decimals"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -106,7 +106,7 @@
 
     <Button
         android:id="@+id/button_fractions"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -121,7 +121,7 @@
 
     <Button
         android:id="@+id/button_exponents"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Exponents"
@@ -135,7 +135,7 @@
 
     <Button
         android:id="@+id/button_more"
-        style="@style/AppTheme.InverseButtonStyle"
+        style="@style/AppTheme.Button.Inverse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
