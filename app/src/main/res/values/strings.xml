@@ -3,4 +3,7 @@
     <string name="button_resources_text">Study Resources</string>
     <string name="button_sample_text">Sample Test</string>
     <string name="title_arithmetic">Arithmetic</string>
+    <string name="title_algebra">Algebra</string>
+    <string name="button_test_text">Start Test</string>
+    <string name="button_return_text">Go back</string>
 </resources>

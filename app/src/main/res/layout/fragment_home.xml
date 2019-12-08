@@ -8,21 +8,21 @@
 
     <Button
         android:id="@+id/button_sample_test"
-        style="@style/InverseButtonStyle"
+        style="@style/AppTheme.InverseButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/button_sample_text"
-        app:layout_constraintEnd_toStartOf="@+id/button_sample_test2"
+        app:layout_constraintEnd_toStartOf="@+id/button_resources"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_sample_test2"
-        style="@style/InverseButtonStyle"
+        android:id="@+id/button_resources"
+        style="@style/AppTheme.InverseButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,21 +41,112 @@
         android:layout_marginTop="8dp"
         android:alpha="6"
         android:background="@color/design_default_color_on_secondary"
-        app:layout_constraintEnd_toEndOf="@+id/button_sample_test2"
+        app:layout_constraintEnd_toEndOf="@+id/button_resources"
         app:layout_constraintStart_toStartOf="@+id/button_sample_test"
         app:layout_constraintTop_toBottomOf="@+id/button_sample_test" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_arithmetic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:background="@color/primaryColor"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_rect"
         android:padding="8dp"
         android:text="@string/title_arithmetic"
         android:textColor="@color/primaryTextColor"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="84dp" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/button_operations"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Operations"
+        android:textAllCaps="false"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button_negative"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/text_arithmetic" />
+
+    <Button
+        android:id="@+id/button_negative"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Negative Numbers"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button_operations"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimals"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_operations"
+        app:layout_constraintTop_toTopOf="@+id/button_operations" />
+
+    <Button
+        android:id="@+id/button_decimals"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="Decimals"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button_negative"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_negative"
+        app:layout_constraintTop_toTopOf="@+id/button_negative" />
+
+    <Button
+        android:id="@+id/button_fractions"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Fractions"
+        android:textAllCaps="false"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button_negative"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_operations"
+        app:layout_constraintTop_toBottomOf="@+id/button_operations" />
+
+    <Button
+        android:id="@+id/button_exponents"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Exponents"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button_fractions"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/button_decimals"
+        app:layout_constraintStart_toEndOf="@+id/button_operations"
+        app:layout_constraintTop_toTopOf="@+id/button_fractions"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button_more"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="Show more"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button_exponents"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/button_decimals"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/button_negative"
+        app:layout_constraintTop_toTopOf="@+id/button_exponents"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

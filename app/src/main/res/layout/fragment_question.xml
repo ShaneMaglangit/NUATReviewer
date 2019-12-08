@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".question.QuestionFragment">
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/primaryColor"
+        android:padding="32dp"
+        android:text="What is the difference of 10 subtracted by 5?"
+        android:textAlignment="center"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/radio_group_answer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_answer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_confirmation"
+        app:layout_constraintEnd_toEndOf="@+id/text_question"
+        app:layout_constraintStart_toStartOf="@+id/text_question"
+        app:layout_constraintTop_toBottomOf="@+id/text_question">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/radio_answer_top_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:text="5"
+                app:layout_constraintEnd_toStartOf="@+id/radio_answer_top_right"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_top_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:text="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/radio_answer_top_left"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_bottom_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:text="6"
+                app:layout_constraintEnd_toStartOf="@+id/radio_answer_bottom_right"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radio_answer_top_left" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_bottom_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:text="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/radio_answer_bottom_left"
+                app:layout_constraintTop_toBottomOf="@+id/radio_answer_top_right" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_confirmation"
+        style="@style/AppTheme.InverseButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Submit Answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_answer" />
+</androidx.constraintlayout.widget.ConstraintLayout>
