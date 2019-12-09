@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".result.ResultFragment">
+    tools:context=".ui.result.ResultFragment">
 
     <ImageView
         android:id="@+id/image_congratulate"
@@ -29,6 +29,7 @@
         android:layout_marginEnd="16dp"
         android:text="You answered 10 out of 20 questions correctly"
         android:textAlignment="center"
+        android:textColor="@color/secondaryTextColor"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/button_return"
         app:layout_constraintEnd_toEndOf="parent"

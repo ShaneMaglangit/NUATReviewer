@@ -1,152 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/button_sample_test"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/button_sample_text"
-        app:layout_constraintEnd_toStartOf="@+id/button_resources"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.shanemaglangit.nuatreviewer.ui.home.HomeViewModel" />
+    </data>
 
-    <Button
-        android:id="@+id/button_resources"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/button_resources_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_sample_test"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:alpha="6"
-        android:background="@color/design_default_color_on_secondary"
-        app:layout_constraintEnd_toEndOf="@+id/button_resources"
-        app:layout_constraintStart_toStartOf="@+id/button_sample_test"
-        app:layout_constraintTop_toBottomOf="@+id/button_sample_test" />
+        <Button
+            android:id="@+id/button_sample_test"
+            style="@style/AppTheme.Button.Inverse"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/button_sample_text"
+            app:layout_constraintBottom_toBottomOf="@+id/button_resources"
+            app:layout_constraintEnd_toStartOf="@+id/button_resources"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_resources" />
 
-    <TextView
-        android:id="@+id/text_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_rect"
-        android:padding="8dp"
-        android:text="@string/title_arithmetic"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        <Button
+            android:id="@+id/button_resources"
+            style="@style/AppTheme.Button.Inverse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/button_resources_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_sample_test"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_operations"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Operations"
-        android:textAllCaps="false"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/button_negative"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:alpha="6"
+            android:background="@color/design_default_color_on_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/button_resources"
+            app:layout_constraintStart_toStartOf="@+id/button_sample_test"
+            app:layout_constraintTop_toBottomOf="@+id/button_sample_test" />
 
-    <Button
-        android:id="@+id/button_negative"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Negative Numbers"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button_operations"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/button_decimals"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_operations"
-        app:layout_constraintTop_toTopOf="@+id/button_operations" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_topics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <Button
-        android:id="@+id/button_decimals"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="Decimals"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button_negative"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_negative"
-        app:layout_constraintTop_toTopOf="@+id/button_negative" />
+        <!--        <TextView-->
+<!--            android:id="@+id/text_description"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:background="@color/primaryColor"-->
+<!--            android:padding="8dp"-->
+<!--            android:text="@string/title_arithmetic"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/primaryTextColor"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/view"-->
+<!--            app:layout_constraintHorizontal_bias="1.0"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/view"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/view" />-->
 
-    <Button
-        android:id="@+id/button_fractions"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Fractions"
-        android:textAllCaps="false"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/button_negative"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button_operations"
-        app:layout_constraintTop_toBottomOf="@+id/button_operations" />
+<!--        <Button-->
+<!--            android:id="@+id/button_operations"-->
+<!--            style="@style/AppTheme.Button.Inverse"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:onClick="@{() -> homeViewModel.navigateToStart()}"-->
+<!--            android:text="Operations"-->
+<!--            android:textAllCaps="false"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/button_negative2"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/text_description" />-->
 
-    <Button
-        android:id="@+id/button_exponents"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Exponents"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button_fractions"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/button_decimals"
-        app:layout_constraintStart_toEndOf="@+id/button_operations"
-        app:layout_constraintTop_toTopOf="@+id/button_fractions"
-        app:layout_constraintVertical_bias="1.0" />
+<!--        <Button-->
+<!--            android:id="@+id/button_negative"-->
+<!--            style="@style/AppTheme.Button.Inverse"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:text="Fractions"-->
+<!--            android:textAllCaps="false"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/button_negative2"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/button_negative2"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/button_negative2" />-->
 
-    <Button
-        android:id="@+id/button_more"
-        style="@style/AppTheme.Button.Inverse"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="Show more"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button_exponents"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toEndOf="@+id/button_decimals"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button_negative"
-        app:layout_constraintTop_toTopOf="@+id/button_exponents"
-        app:layout_constraintVertical_bias="0.0" />
+<!--        <Button-->
+<!--            android:id="@+id/button_negative2"-->
+<!--            style="@style/AppTheme.Button.Inverse"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:text="Negative Numbers"-->
+<!--            android:textAllCaps="false"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/button_operations"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/button_negative"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/button_operations"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/button_operations" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

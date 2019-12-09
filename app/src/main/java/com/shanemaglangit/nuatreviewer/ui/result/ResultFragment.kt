@@ -1,4 +1,4 @@
-package com.shanemaglangit.nuatreviewer.result
+package com.shanemaglangit.nuatreviewer.ui.result
 
 
 import android.os.Bundle
