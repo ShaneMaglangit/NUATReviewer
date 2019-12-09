@@ -96,7 +96,7 @@ sealed class DataItem {
     abstract val id: Long
 
     data class TopicItem(val topic: Topic) : DataItem() {
-        override val id = topic.id
+        override val id = topic.topicId
     }
 
     object Header : DataItem() {
