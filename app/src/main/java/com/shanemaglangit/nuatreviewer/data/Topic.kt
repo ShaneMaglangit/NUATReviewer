@@ -8,6 +8,7 @@ data class Topic (
     @PrimaryKey(autoGenerate=true)
     val topicId: Long = 0L,
     val category: String? = null,
-    val title: String,
-    val description: String? = null
+    val title: String? = null,
+    val description: String? = null,
+    val order: Int? = 0
 )
