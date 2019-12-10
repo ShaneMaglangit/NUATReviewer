@@ -1,12 +1,10 @@
 package com.shanemaglangit.nuatreviewer.data
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentId
 
-@Entity(tableName = "topic_table")
 data class Topic (
-    @PrimaryKey(autoGenerate=true)
-    val topicId: Long = 0L,
+    @DocumentId
+    val topicId: String = "",
     val category: String? = null,
     val title: String? = null,
     val description: String? = null,

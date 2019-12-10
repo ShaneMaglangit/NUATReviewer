@@ -14,7 +14,7 @@ import com.shanemaglangit.nuatreviewer.databinding.TopicListItemBinding
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
 
-class TopicAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(TopicDiffCallback()) {
+class TopicAdapter(private val topicListener: TopicListener) : ListAdapter<DataItem, RecyclerView.ViewHolder>(TopicDiffCallback()) {
 
     public override fun getItem(position: Int): DataItem {
         return super.getItem(position)
@@ -24,7 +24,7 @@ class TopicAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(TopicDiffCal
         when (holder) {
             is ViewHolder -> {
                 val item = getItem(position) as DataItem.TopicItem
-                holder.bind(item.topic)
+                holder.bind(item.topic, topicListener)
             }
         }
     }
@@ -62,11 +62,12 @@ class TopicAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(TopicDiffCal
         }
     }
 
-    class ViewHolder private constructor(val binding: TopicListItemBinding) :
+    class ViewHolder private constructor(private val binding: TopicListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Topic) {
+        fun bind(item: Topic, topicListener: TopicListener) {
             binding.topic = item
+            binding.clickListener = topicListener
             binding.executePendingBindings()
         }
 
@@ -92,14 +93,18 @@ class TopicDiffCallback : DiffUtil.ItemCallback<DataItem>() {
     }
 }
 
+class TopicListener(val clickListener: (topic: Topic) -> Unit) {
+    fun onClick(topic: Topic) = clickListener(topic)
+}
+
 sealed class DataItem {
-    abstract val id: Long
+    abstract val id: String
 
     data class TopicItem(val topic: Topic) : DataItem() {
         override val id = topic.topicId
     }
 
     object Header : DataItem() {
-        override val id = Long.MIN_VALUE
+        override val id = ""
     }
 }

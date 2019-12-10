@@ -10,15 +10,16 @@ import timber.log.Timber
 class HomeViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
-    private val _toStart = MutableLiveData<Boolean>()
-    val toStart: LiveData<Boolean>
-        get() = _toStart
-
     private val _topicItem = MutableLiveData<List<Topic>>()
     val topicItem: LiveData<List<Topic>>
         get() = _topicItem
 
+    private val _selectedTopic = MutableLiveData<Topic>()
+    val selectedTopic: LiveData<Topic>
+        get() = _selectedTopic
+
     init {
+        Timber.d("Retrieving collections")
         db.collection("topics")
             .orderBy("order")
             .get()
@@ -30,11 +31,11 @@ class HomeViewModel : ViewModel() {
             }
     }
 
-    fun navigateToStart() {
-        _toStart.value = true
+    fun openTopic(topic: Topic) {
+        _selectedTopic.value = topic
     }
 
-    fun navigateToStartCompleted() {
-        _toStart.value = false
+    fun topicOpened() {
+        _selectedTopic.value = null
     }
 }

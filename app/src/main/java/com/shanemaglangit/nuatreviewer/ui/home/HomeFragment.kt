@@ -14,11 +14,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.databinding.FragmentHomeBinding
 import com.shanemaglangit.nuatreviewer.util.TopicAdapter
+import com.shanemaglangit.nuatreviewer.util.TopicListener
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var alarmAdapter: TopicAdapter
+    private lateinit var topicAdapter: TopicAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,34 +28,45 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         homeViewModel =
             ViewModelProvider(this, HomeViewModelFactory()).get(HomeViewModel::class.java)
-        alarmAdapter = TopicAdapter()
 
-        binding.recyclerTopics.layoutManager = GridLayoutManager(activity, 2).apply {
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int) = when (position) {
-                    0 -> 2
-                    else -> 1
-                }
-            }
-        }
-
-        binding.recyclerTopics.adapter = alarmAdapter
+        activity!!.title = ""
         binding.homeViewModel = homeViewModel
         binding.lifecycleOwner = this
 
-        activity!!.title = ""
-
-        homeViewModel.topicItem.observe(viewLifecycleOwner, Observer {
-            alarmAdapter.addHeaderAndSubmitList(it)
-        })
-
-        homeViewModel.toStart.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                findNavController().navigate(R.id.action_homeFragment_to_startFragment)
-                homeViewModel.navigateToStartCompleted()
-            }
-        })
+        setupObservers()
+        setupRecyclerTopics()
 
         return binding.root
+    }
+
+    private fun setupObservers() {
+        homeViewModel.topicItem.observe(viewLifecycleOwner, Observer {
+            topicAdapter.addHeaderAndSubmitList(it)
+        })
+
+        homeViewModel.selectedTopic.observe(viewLifecycleOwner, Observer {
+            if(it != null) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStartFragment(it.topicId, it.description!!))
+                homeViewModel.topicOpened()
+            }
+        })
+    }
+
+    private fun setupRecyclerTopics() {
+        topicAdapter = TopicAdapter( TopicListener {
+            homeViewModel.openTopic(it)
+        })
+
+        binding.recyclerTopics.apply {
+            adapter = topicAdapter
+            layoutManager = GridLayoutManager(activity, 2).apply {
+                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int) = when (position) {
+                        0 -> 2
+                        else -> 1
+                    }
+                }
+            }
+        }
     }
 }

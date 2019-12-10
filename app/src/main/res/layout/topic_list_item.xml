@@ -6,6 +6,9 @@
         <variable
             name="topic"
             type="com.shanemaglangit.nuatreviewer.data.Topic" />
+        <variable
+            name="clickListener"
+            type="com.shanemaglangit.nuatreviewer.util.TopicListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +24,7 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="@{topic.title}"
             android:textAlignment="gravity"
+            android:onClick="@{() -> clickListener.onClick(topic)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
