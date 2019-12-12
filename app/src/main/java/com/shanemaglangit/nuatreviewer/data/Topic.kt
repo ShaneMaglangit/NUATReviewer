@@ -8,5 +8,5 @@ data class Topic (
     val category: String? = null,
     val title: String? = null,
     val description: String? = null,
-    val order: Int? = 0
+    val order: Int = 0
 )

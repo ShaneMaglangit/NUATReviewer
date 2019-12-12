@@ -21,11 +21,12 @@ class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
     private lateinit var startViewModel: StartViewModel
 
+    private val arguments: StartFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val arguments: StartFragmentArgs by navArgs()
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
         startViewModel =
@@ -50,7 +51,9 @@ class StartFragment : Fragment() {
 
         startViewModel.toQuestion.observe(viewLifecycleOwner, Observer {
             if(it) {
-                findNavController().navigate(R.id.action_startFragment_to_questionFragment)
+                findNavController().navigate(
+                    StartFragmentDirections.actionStartFragmentToQuestionFragment(arguments.title)
+                )
                 startViewModel.navigatetoQuestionCompleted()
             }
         })

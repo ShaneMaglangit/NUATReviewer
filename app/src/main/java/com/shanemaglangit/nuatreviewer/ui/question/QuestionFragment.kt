@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.databinding.FragmentQuestionBinding
 
@@ -22,8 +23,10 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val arguments: QuestionFragmentArgs by navArgs()
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
-        questionViewModel = ViewModelProvider(this, QuestionViewModelFactory()).get(QuestionViewModel::class.java)
+        questionViewModel = ViewModelProvider(this, QuestionViewModelFactory(arguments.title)).get(QuestionViewModel::class.java)
 
         binding.questionViewModel = questionViewModel
         binding.lifecycleOwner = this

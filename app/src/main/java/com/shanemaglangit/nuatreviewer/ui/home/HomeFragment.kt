@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
         homeViewModel.selectedTopic.observe(viewLifecycleOwner, Observer {
             if(it != null) {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStartFragment(it.topicId, it.description!!))
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStartFragment(it.title!!, it.description!!))
                 homeViewModel.topicOpened()
             }
         })

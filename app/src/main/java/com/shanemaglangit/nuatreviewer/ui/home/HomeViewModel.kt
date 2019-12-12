@@ -19,7 +19,6 @@ class HomeViewModel : ViewModel() {
         get() = _selectedTopic
 
     init {
-        Timber.d("Retrieving collections")
         db.collection("topics")
             .orderBy("order")
             .get()
