@@ -49,29 +49,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
-                android:text="5" />
+                android:checked="@={questionViewModel.optionTopLeftChecked}"
+                android:text="@{questionViewModel.optionTopLeft}" />
 
             <RadioButton
                 android:id="@+id/radio_answer_top_right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
-                android:text="3" />
+                android:checked="@={questionViewModel.optionTopRightChecked}"
+                android:text="@{questionViewModel.optionTopRight}" />
 
             <RadioButton
                 android:id="@+id/radio_answer_bottom_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
-                android:text="6" />
+                android:checked="@={questionViewModel.optionBottomLeftChecked}"
+                android:text="@{questionViewModel.optionBottomLeft}" />
 
             <RadioButton
                 android:id="@+id/radio_answer_bottom_right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
-                android:text="2" />
-
+                android:checked="@={questionViewModel.optionBottomRightChecked}"
+                android:text="@{questionViewModel.optionBottomRight}" />
         </RadioGroup>
 
         <Button
@@ -81,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Submit Answer"
+            android:onClick="@{() -> questionViewModel.submitAnswer()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radio_group_answer" />
