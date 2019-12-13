@@ -40,11 +40,6 @@ class QuestionViewModel(title: String) : ViewModel() {
     val answerIsCorrect: LiveData<Boolean>
         get() = _answerIsCorrect
 
-    val optionTopLeftChecked = MutableLiveData<Boolean>()
-    val optionTopRightChecked = MutableLiveData<Boolean>()
-    val optionBottomRightChecked = MutableLiveData<Boolean>()
-    val optionBottomLeftChecked = MutableLiveData<Boolean>()
-
     private lateinit var selectedQuestion: Question
 
     init {

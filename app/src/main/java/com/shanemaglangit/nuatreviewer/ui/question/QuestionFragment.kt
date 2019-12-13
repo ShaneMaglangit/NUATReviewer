@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.databinding.FragmentQuestionBinding
 
@@ -72,6 +73,7 @@ class QuestionFragment : Fragment() {
             selectedRadioButton.buttonTintList = colorState
             selectedRadioButton.setTextColor(colorState)
             binding.buttonConfirmation.visibility = View.GONE
+            binding.buttonNext.visibility = View.VISIBLE
             binding.radioGroupAnswer.children.forEach { it.isEnabled = false }
         })
     }
@@ -89,6 +91,7 @@ class QuestionFragment : Fragment() {
             if(answer != null) {
                 questionViewModel.submitAnswer(answer)
             } else {
+                Snackbar.make(binding.root, "Please choose your answer", Snackbar.LENGTH_SHORT).show()
             }
         }
     }
