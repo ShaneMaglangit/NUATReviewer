@@ -1,13 +1,13 @@
 package com.shanemaglangit.nuatreviewer.ui.question
 
 
-import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -51,9 +51,7 @@ class QuestionFragment : Fragment() {
                 else -> null
             } as RadioButton
 
-            val colorState: ColorStateList?
-
-            colorState = when(it) {
+            val colorState = when(it) {
                 true -> {
                     if(Build.VERSION.SDK_INT >= 23) {
                         resources.getColorStateList(R.color.correct_button_color_state, activity!!.theme)
@@ -72,6 +70,9 @@ class QuestionFragment : Fragment() {
             }
 
             selectedRadioButton.buttonTintList = colorState
+            selectedRadioButton.setTextColor(colorState)
+            binding.buttonConfirmation.visibility = View.GONE
+            binding.radioGroupAnswer.children.forEach { it.isEnabled = false }
         })
     }
 
