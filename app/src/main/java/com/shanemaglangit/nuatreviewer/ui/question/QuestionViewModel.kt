@@ -16,30 +16,36 @@ class QuestionViewModel(title: String) : ViewModel() {
     private var correctAnswers: Int = 0
     private var incorrectAnswer: Int = 0
 
-    private var _currentQuestion = MutableLiveData<Question>()
+    private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question>
         get() = _currentQuestion
 
-    private var _optionTopLeft = MutableLiveData<String>()
+    private val _optionTopLeft = MutableLiveData<String>()
     val optionTopLeft: LiveData<String>
         get() = _optionTopLeft
 
-    private var _optionTopRight = MutableLiveData<String>()
+    private val _optionTopRight = MutableLiveData<String>()
     val optionTopRight: LiveData<String>
         get() = _optionTopRight
 
-    private var _optionBottomLeft = MutableLiveData<String>()
+    private val _optionBottomLeft = MutableLiveData<String>()
     val optionBottomLeft: LiveData<String>
         get() = _optionBottomLeft
 
-    private var _optionBottomRight = MutableLiveData<String>()
+    private val _optionBottomRight = MutableLiveData<String>()
     val optionBottomRight: LiveData<String>
         get() = _optionBottomRight
+
+    private val _answerIsCorrect = MutableLiveData<Boolean>()
+    val answerIsCorrect: LiveData<Boolean>
+        get() = _answerIsCorrect
 
     val optionTopLeftChecked = MutableLiveData<Boolean>()
     val optionTopRightChecked = MutableLiveData<Boolean>()
     val optionBottomRightChecked = MutableLiveData<Boolean>()
     val optionBottomLeftChecked = MutableLiveData<Boolean>()
+
+    private lateinit var selectedQuestion: Question
 
     init {
         db.collection("questions")
@@ -56,7 +62,7 @@ class QuestionViewModel(title: String) : ViewModel() {
     }
 
     fun selectRandomQuestion() {
-        val selectedQuestion = questions[Random.nextInt(0, questionsCount)]
+        selectedQuestion = questions[Random.nextInt(0, questionsCount)]
         val choices = selectedQuestion.options.toMutableList().apply{
             add(selectedQuestion.answer)
             shuffle()
@@ -69,7 +75,7 @@ class QuestionViewModel(title: String) : ViewModel() {
         _optionBottomRight.value = choices[3]
     }
 
-    fun submitAnswer() {
-
+    fun submitAnswer(answer: String) {
+        _answerIsCorrect.value = answer == selectedQuestion.answer
     }
 }
