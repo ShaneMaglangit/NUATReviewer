@@ -14,7 +14,6 @@ class QuestionViewModel(title: String) : ViewModel() {
     private lateinit var questions: MutableList<Question>
     private var questionsCount: Int = 0
     private var correctAnswers: Int = 0
-    private var incorrectAnswer: Int = 0
 
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question>
@@ -40,7 +39,9 @@ class QuestionViewModel(title: String) : ViewModel() {
     val answerIsCorrect: LiveData<Boolean>
         get() = _answerIsCorrect
 
-    private lateinit var selectedQuestion: Question
+    private val _isEnd = MutableLiveData<Boolean>()
+    val isEnd: LiveData<Boolean>
+        get() = _isEnd
 
     init {
         db.collection("questions")
@@ -57,8 +58,8 @@ class QuestionViewModel(title: String) : ViewModel() {
     }
 
     fun selectRandomQuestion() {
-        selectedQuestion = questions[Random.nextInt(0, questionsCount)]
-        val choices = selectedQuestion.options.toMutableList().apply{
+        val selectedQuestion = questions[Random.nextInt(0, questions.size)]
+        val choices = selectedQuestion.options.toMutableList().apply {
             add(selectedQuestion.answer)
             shuffle()
         }
@@ -68,9 +69,33 @@ class QuestionViewModel(title: String) : ViewModel() {
         _optionTopRight.value = choices[1]
         _optionBottomLeft.value = choices[2]
         _optionBottomRight.value = choices[3]
+
+        questions.remove(selectedQuestion)
+    }
+
+    fun testEnded() {
+        _isEnd.value = false
     }
 
     fun submitAnswer(answer: String) {
-        _answerIsCorrect.value = answer == selectedQuestion.answer
+        if(answer == _currentQuestion.value!!.answer) {
+            _answerIsCorrect.value = true
+            correctAnswers++
+        } else {
+            _answerIsCorrect.value = false
+        }
+    }
+
+    fun answerSubmittedSuccessfully() {
+        _answerIsCorrect.value = null
+    }
+
+    fun nextQuestion() {
+        if(questions.size > 0) {
+            _currentQuestion.value = null
+            selectRandomQuestion()
+        } else {
+            _isEnd.value = true
+        }
     }
 }

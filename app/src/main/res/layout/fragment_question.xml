@@ -96,6 +96,7 @@
             android:layout_marginTop="24dp"
             android:text="Next"
             android:visibility="gone"
+            android:onClick="@{() -> questionViewModel.nextQuestion()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_confirmation" />

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.shanemaglangit.nuatreviewer.R
@@ -43,38 +44,71 @@ class QuestionFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        questionViewModel.answerIsCorrect.observe(this, Observer {
-            val selectedRadioButton = when(binding.radioGroupAnswer.checkedRadioButtonId) {
-                R.id.radio_answer_top_left -> binding.radioAnswerTopLeft
-                R.id.radio_answer_top_right -> binding.radioAnswerTopRight
-                R.id.radio_answer_bottom_left -> binding.radioAnswerBottomLeft
-                R.id.radio_answer_bottom_right -> binding.radioAnswerBottomRight
-                else -> null
-            } as RadioButton
+        questionViewModel.currentQuestion.observe(this, Observer {
+            binding.buttonConfirmation.visibility = View.VISIBLE
+            binding.buttonNext.visibility = View.GONE
+            binding.radioGroupAnswer.children.forEach {
+                if(it is RadioButton) {
+                    it.isEnabled = true
+                    it.isChecked = false
 
-            val colorState = when(it) {
-                true -> {
                     if(Build.VERSION.SDK_INT >= 23) {
-                        resources.getColorStateList(R.color.correct_button_color_state, activity!!.theme)
+                        it.buttonTintList = resources.getColorStateList(R.color.default_button_color_state, activity!!.theme)
+                        it.setTextColor(resources.getColor(R.color.secondaryTextColor, activity!!.theme))
                     } else {
-                        resources.getColorStateList(R.color.correct_button_color_state)
+                        it.buttonTintList = resources.getColorStateList(R.color.default_button_color_state)
+                        it.setTextColor(resources.getColor(R.color.secondaryTextColor))
                     }
                 }
-                false -> {
-                    if(Build.VERSION.SDK_INT >= 23) {
-                        resources.getColorStateList(R.color.incorrect_button_color_state, activity!!.theme)
-                    } else {
-                        resources.getColorStateList(R.color.incorrect_button_color_state)
-                    }
-                }
-                else -> null
             }
+        })
 
-            selectedRadioButton.buttonTintList = colorState
-            selectedRadioButton.setTextColor(colorState)
-            binding.buttonConfirmation.visibility = View.GONE
-            binding.buttonNext.visibility = View.VISIBLE
-            binding.radioGroupAnswer.children.forEach { it.isEnabled = false }
+        questionViewModel.answerIsCorrect.observe(this, Observer {
+            if(it != null) {
+                val selectedRadioButton = when(binding.radioGroupAnswer.checkedRadioButtonId) {
+                    R.id.radio_answer_top_left -> binding.radioAnswerTopLeft
+                    R.id.radio_answer_top_right -> binding.radioAnswerTopRight
+                    R.id.radio_answer_bottom_left -> binding.radioAnswerBottomLeft
+                    R.id.radio_answer_bottom_right -> binding.radioAnswerBottomRight
+                    else -> null
+                } as RadioButton
+
+                val colorState = when(it) {
+                    true -> {
+                        if(Build.VERSION.SDK_INT >= 23) {
+                            resources.getColorStateList(R.color.correct_button_color_state, activity!!.theme)
+                        } else {
+                            resources.getColorStateList(R.color.correct_button_color_state)
+                        }
+                    }
+                    false -> {
+                        if(Build.VERSION.SDK_INT >= 23) {
+                            resources.getColorStateList(R.color.incorrect_button_color_state, activity!!.theme)
+                        } else {
+                            resources.getColorStateList(R.color.incorrect_button_color_state)
+                        }
+                    }
+                    else -> null
+                }
+
+                selectedRadioButton.buttonTintList = colorState
+                selectedRadioButton.setTextColor(colorState)
+                binding.buttonConfirmation.visibility = View.GONE
+                binding.buttonNext.visibility = View.VISIBLE
+                binding.radioGroupAnswer.children.forEach { it.isEnabled = false }
+
+                questionViewModel.answerSubmittedSuccessfully()
+            }
+        })
+
+        questionViewModel.isEnd.observe(this, Observer {
+            if(it) {
+                findNavController().navigate(
+                    QuestionFragmentDirections.actionQuestionFragmentToResultFragment()
+                )
+
+                questionViewModel.testEnded()
+            }
         })
     }
 
