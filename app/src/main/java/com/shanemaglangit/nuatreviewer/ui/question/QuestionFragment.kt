@@ -23,7 +23,7 @@ import com.shanemaglangit.nuatreviewer.databinding.FragmentQuestionBinding
  */
 class QuestionFragment : Fragment() {
     private lateinit var binding: FragmentQuestionBinding
-    private lateinit var questionViewModel : QuestionViewModel
+    private lateinit var questionViewModel: QuestionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,10 @@ class QuestionFragment : Fragment() {
         val arguments: QuestionFragmentArgs by navArgs()
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
-        questionViewModel = ViewModelProvider(this, QuestionViewModelFactory(arguments.title)).get(QuestionViewModel::class.java)
+        questionViewModel = ViewModelProvider(
+            this,
+            QuestionViewModelFactory(arguments.title)
+        ).get(QuestionViewModel::class.java)
 
         binding.questionViewModel = questionViewModel
         binding.lifecycleOwner = this
@@ -48,15 +51,24 @@ class QuestionFragment : Fragment() {
             binding.buttonConfirmation.visibility = View.VISIBLE
             binding.buttonNext.visibility = View.GONE
             binding.radioGroupAnswer.children.forEach {
-                if(it is RadioButton) {
+                if (it is RadioButton) {
                     it.isEnabled = true
                     it.isChecked = false
 
-                    if(Build.VERSION.SDK_INT >= 23) {
-                        it.buttonTintList = resources.getColorStateList(R.color.default_button_color_state, activity!!.theme)
-                        it.setTextColor(resources.getColor(R.color.secondaryTextColor, activity!!.theme))
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        it.buttonTintList = resources.getColorStateList(
+                            R.color.default_button_color_state,
+                            activity!!.theme
+                        )
+                        it.setTextColor(
+                            resources.getColor(
+                                R.color.secondaryTextColor,
+                                activity!!.theme
+                            )
+                        )
                     } else {
-                        it.buttonTintList = resources.getColorStateList(R.color.default_button_color_state)
+                        it.buttonTintList =
+                            resources.getColorStateList(R.color.default_button_color_state)
                         it.setTextColor(resources.getColor(R.color.secondaryTextColor))
                     }
                 }
@@ -64,8 +76,8 @@ class QuestionFragment : Fragment() {
         })
 
         questionViewModel.answerIsCorrect.observe(this, Observer {
-            if(it != null) {
-                val selectedRadioButton = when(binding.radioGroupAnswer.checkedRadioButtonId) {
+            if (it != null) {
+                val selectedRadioButton = when (binding.radioGroupAnswer.checkedRadioButtonId) {
                     R.id.radio_answer_top_left -> binding.radioAnswerTopLeft
                     R.id.radio_answer_top_right -> binding.radioAnswerTopRight
                     R.id.radio_answer_bottom_left -> binding.radioAnswerBottomLeft
@@ -73,17 +85,23 @@ class QuestionFragment : Fragment() {
                     else -> null
                 } as RadioButton
 
-                val colorState = when(it) {
+                val colorState = when (it) {
                     true -> {
-                        if(Build.VERSION.SDK_INT >= 23) {
-                            resources.getColorStateList(R.color.correct_button_color_state, activity!!.theme)
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            resources.getColorStateList(
+                                R.color.correct_button_color_state,
+                                activity!!.theme
+                            )
                         } else {
                             resources.getColorStateList(R.color.correct_button_color_state)
                         }
                     }
                     false -> {
-                        if(Build.VERSION.SDK_INT >= 23) {
-                            resources.getColorStateList(R.color.incorrect_button_color_state, activity!!.theme)
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            resources.getColorStateList(
+                                R.color.incorrect_button_color_state,
+                                activity!!.theme
+                            )
                         } else {
                             resources.getColorStateList(R.color.incorrect_button_color_state)
                         }
@@ -102,9 +120,12 @@ class QuestionFragment : Fragment() {
         })
 
         questionViewModel.isEnd.observe(this, Observer {
-            if(it) {
+            if (it) {
                 findNavController().navigate(
-                    QuestionFragmentDirections.actionQuestionFragmentToResultFragment()
+                    QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
+                        questionViewModel.questionsCount,
+                        questionViewModel.correctAnswers
+                    )
                 )
 
                 questionViewModel.testEnded()
@@ -114,7 +135,7 @@ class QuestionFragment : Fragment() {
 
     private fun setupListeners() {
         binding.buttonConfirmation.setOnClickListener {
-            val answer = when(binding.radioGroupAnswer.checkedRadioButtonId) {
+            val answer = when (binding.radioGroupAnswer.checkedRadioButtonId) {
                 R.id.radio_answer_top_left -> binding.radioAnswerTopLeft.text.toString()
                 R.id.radio_answer_top_right -> binding.radioAnswerTopRight.text.toString()
                 R.id.radio_answer_bottom_left -> binding.radioAnswerBottomLeft.text.toString()
@@ -122,10 +143,11 @@ class QuestionFragment : Fragment() {
                 else -> null
             }
 
-            if(answer != null) {
+            if (answer != null) {
                 questionViewModel.submitAnswer(answer)
             } else {
-                Snackbar.make(binding.root, "Please choose your answer", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Please choose your answer", Snackbar.LENGTH_SHORT)
+                    .show()
             }
         }
     }

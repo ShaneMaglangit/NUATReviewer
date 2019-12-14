@@ -47,7 +47,8 @@
             android:id="@+id/action_questionFragment_to_resultFragment"
             app:destination="@id/resultFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/startFragment" />
         <argument
             android:name="title"
             app:argType="string" />
@@ -62,5 +63,11 @@
             app:destination="@id/startFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="totalQuestions"
+            app:argType="integer" />
+        <argument
+            android:name="correctAnswers"
+            app:argType="integer" />
     </fragment>
 </navigation>

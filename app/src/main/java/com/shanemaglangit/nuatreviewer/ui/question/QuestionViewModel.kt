@@ -12,8 +12,8 @@ class QuestionViewModel(title: String) : ViewModel() {
     val db = FirebaseFirestore.getInstance()
 
     private lateinit var questions: MutableList<Question>
-    private var questionsCount: Int = 0
-    private var correctAnswers: Int = 0
+    var questionsCount: Int = 0
+    var correctAnswers: Int = 0
 
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question>
