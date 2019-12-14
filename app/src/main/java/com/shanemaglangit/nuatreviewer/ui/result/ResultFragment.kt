@@ -5,34 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.shanemaglangit.nuatreviewer.R
-import com.shanemaglangit.nuatreviewer.databinding.FragmentResultBinding
+import kotlinx.android.synthetic.main.fragment_result.*
 
 class ResultFragment : Fragment() {
-    private lateinit var binding: FragmentResultBinding
-    private lateinit var resultViewModel: ResultViewModel
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val arguments: ResultFragmentArgs by navArgs()
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
-        resultViewModel = ViewModelProvider(
-            this,
-            ResultViewModelFactory(arguments.totalQuestions, arguments.correctAnswers)
-        ).get(ResultViewModel::class.java)
-
-        binding.resultViewModel = resultViewModel
-        binding.lifecycleOwner = this
-
-        return binding.root
+        return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val arguments: ResultFragmentArgs by navArgs()
 
+        text_result.text = arguments.correctAnswers.toString()
+        text_result_sub.text = "correct answers out of ${arguments.totalQuestions} questions"
+
+        setListeners()
+    }
+
+    fun setListeners() {
+        button_return.setOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
 }
