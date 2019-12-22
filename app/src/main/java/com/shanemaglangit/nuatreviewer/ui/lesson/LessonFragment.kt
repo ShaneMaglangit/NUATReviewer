@@ -7,33 +7,58 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
-import kotlinx.android.synthetic.main.fragment_lesson.*
+import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
+import com.shanemaglangit.nuatreviewer.databinding.FragmentLessonBinding
+import org.koin.android.ext.android.inject
 
 class LessonFragment : Fragment() {
+    private lateinit var binding: FragmentLessonBinding
+    private lateinit var lessonViewModel: LessonViewModel
+    private val arguments: LessonFragmentArgs by navArgs()
+    private val database: TopicDatabaseDao by inject()
+
+    private lateinit var activity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setupSupportActionBar()
+        activity = requireActivity() as MainActivity
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
+        lessonViewModel = ViewModelProvider(this, LessonViewModelFactory(database, arguments.topicId)).get(LessonViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_lesson, container, false)
+        setupSupportActionBar()
+        setupObservers()
+        setupListeners()
+
+        binding.lessonViewModel = lessonViewModel
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setupObservers() {
+        lessonViewModel.topic.observe(this, Observer {
+            if(it != null) activity.supportActionBar?.title = it.title
+        })
 
-        button_return.setOnClickListener {
+    }
+
+    private fun setupListeners() {
+        binding.buttonReturn.setOnClickListener {
             findNavController().navigateUp()
         }
     }
 
     private fun setupSupportActionBar() {
-        val activity = requireActivity() as MainActivity
         activity.supportActionBar?.apply {
             setBackgroundDrawable(
                 ColorDrawable(

@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.shanemaglangit.nuatreviewer.ui.welcome.WelcomeFragment"
-        android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcomeFragment_to_topicFragment"
@@ -21,7 +20,6 @@
     <fragment
         android:id="@+id/topicFragment"
         android:name="com.shanemaglangit.nuatreviewer.ui.topic.TopicFragment"
-        android:label="fragment_topic"
         tools:layout="@layout/fragment_topic" >
         <action
             android:id="@+id/action_topicFragment_to_lessonFragment"
@@ -33,14 +31,10 @@
         <argument
             android:name="subject"
             app:argType="string" />
-        <!--        <argument-->
-<!--            android:name="subject"-->
-<!--            app:argType="com.shanemaglangit.nuatreviewer.util.Subjects" />-->
     </fragment>
     <fragment
         android:id="@+id/lessonFragment"
         android:name="com.shanemaglangit.nuatreviewer.ui.lesson.LessonFragment"
-        android:label="fragment_lesson"
         tools:layout="@layout/fragment_lesson" >
         <argument
             android:name="topicId"

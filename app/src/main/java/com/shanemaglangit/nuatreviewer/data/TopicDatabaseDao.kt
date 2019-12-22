@@ -25,6 +25,9 @@ interface TopicDatabaseDao {
         }
     }
 
+    @Query("SELECT * FROM topic_table WHERE topicId = :topicId")
+    fun getTopic(topicId: Long) : Topic
+
     @Query("SELECT * FROM topic_table")
     fun getAllTopic(): List<Topic>
 

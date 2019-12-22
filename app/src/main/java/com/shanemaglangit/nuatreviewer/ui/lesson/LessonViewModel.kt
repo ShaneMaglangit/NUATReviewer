@@ -1,4 +1,4 @@
-package com.shanemaglangit.nuatreviewer.ui.topic
+package com.shanemaglangit.nuatreviewer.ui.lesson
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,23 +7,23 @@ import com.shanemaglangit.nuatreviewer.data.Topic
 import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import kotlinx.coroutines.*
 
-class TopicViewModel(val database: TopicDatabaseDao, subject: String) : ViewModel() {
+class LessonViewModel(private val database: TopicDatabaseDao, topicId: Long) : ViewModel() {
     val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    private val _topics = MutableLiveData<List<Topic>>()
-    val topics: LiveData<List<Topic>>
-        get() = _topics
+    private val _topic = MutableLiveData<Topic>()
+    val topic: LiveData<Topic>
+        get() = _topic
 
     init {
         uiScope.launch {
-            _topics.value = getAllTopics(subject)
+            _topic.value = getTopic(topicId)
         }
     }
 
-    private suspend fun getAllTopics(subject: String) : List<Topic> {
+    private suspend fun getTopic(topicId: Long) : Topic {
         return withContext(Dispatchers.IO) {
-            database.getAllTopicBySubject(subject)
+            database.getTopic(topicId)
         }
     }
 

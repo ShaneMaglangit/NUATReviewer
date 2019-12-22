@@ -26,6 +26,7 @@ class TopicFragment : Fragment() {
     private lateinit var topicViewModel: TopicViewModel
     private val arguments: TopicFragmentArgs by navArgs()
     private val database: TopicDatabaseDao by inject()
+    private lateinit var topicAdapter: TopicAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +39,11 @@ class TopicFragment : Fragment() {
             )
 
         setupSupportActionBar()
+        setupObserver()
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val topicAdapter = TopicAdapter(TopicListener {
+        topicAdapter = TopicAdapter(TopicListener {
             findNavController().navigate(TopicFragmentDirections.actionTopicFragmentToLessonFragment(it))
-        })
-
-        topicViewModel.topics.observe(this, Observer {
-            if (it != null) topicAdapter.submitList(it)
         })
 
         binding.recyclerTopics.layoutManager = layoutManager
@@ -55,11 +53,16 @@ class TopicFragment : Fragment() {
         return binding.root
     }
 
+    private fun setupObserver() {
+        topicViewModel.topics.observe(this, Observer {
+            if (it != null) topicAdapter.submitList(it)
+        })
+    }
+
     private fun setupSupportActionBar() {
         val activity = requireActivity() as MainActivity
         activity.setSupportActionBarColor(Color.TRANSPARENT)
         activity.supportActionBar!!.apply {
-            setDisplayHomeAsUpEnabled(true)
             title = arguments.subject
             show()
         }

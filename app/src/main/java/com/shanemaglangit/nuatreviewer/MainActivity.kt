@@ -3,6 +3,8 @@ package com.shanemaglangit.nuatreviewer
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.shanemaglangit.nuatreviewer.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -24,9 +26,18 @@ class MainActivity : AppCompatActivity() {
             androidContext(this@MainActivity)
             modules(appModule)
         }
+
+        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp()
     }
 
     fun setSupportActionBarColor(color: Int) {
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(color))
+        supportActionBar?.apply {
+            setBackgroundDrawable(ColorDrawable(color))
+        }
     }
 }
