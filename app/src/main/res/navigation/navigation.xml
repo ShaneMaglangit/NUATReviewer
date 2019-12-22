@@ -3,71 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.shanemaglangit.nuatreviewer.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:id="@+id/welcomeFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.welcome.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_homeFragment_to_startFragment"
-            app:destination="@id/startFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_welcomeFragment_to_topicFragment"
+            app:destination="@id/topicFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
-        android:id="@+id/startFragment"
-        android:name="com.shanemaglangit.nuatreviewer.ui.start.StartFragment"
-        android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        android:id="@+id/topicFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.topic.TopicFragment"
+        android:label="fragment_topic"
+        tools:layout="@layout/fragment_topic" >
         <action
-            android:id="@+id/action_startFragment_to_questionFragment"
-            app:destination="@id/questionFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
-            android:id="@+id/action_startFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_topicFragment_to_lessonFragment"
+            app:destination="@id/lessonFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
-            android:name="title"
+            android:name="subject"
             app:argType="string" />
-        <argument
-            android:name="description"
-            app:argType="string" />
+        <!--        <argument-->
+<!--            android:name="subject"-->
+<!--            app:argType="com.shanemaglangit.nuatreviewer.util.Subjects" />-->
     </fragment>
     <fragment
-        android:id="@+id/questionFragment"
-        android:name="com.shanemaglangit.nuatreviewer.ui.question.QuestionFragment"
-        android:label="fragment_question"
-        tools:layout="@layout/fragment_question" >
-        <action
-            android:id="@+id/action_questionFragment_to_resultFragment"
-            app:destination="@id/resultFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@+id/startFragment" />
+        android:id="@+id/lessonFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.lesson.LessonFragment"
+        android:label="fragment_lesson"
+        tools:layout="@layout/fragment_lesson" >
         <argument
-            android:name="title"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/resultFragment"
-        android:name="com.shanemaglangit.nuatreviewer.ui.result.ResultFragment"
-        android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
-        <action
-            android:id="@+id/action_resultFragment_to_startFragment"
-            app:destination="@id/startFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <argument
-            android:name="totalQuestions"
-            app:argType="integer" />
-        <argument
-            android:name="correctAnswers"
-            app:argType="integer" />
+            android:name="topicId"
+            app:argType="long" />
     </fragment>
 </navigation>

@@ -1,8 +1,6 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorPrimaryVariant">@color/primaryLightColor</item>
@@ -11,12 +9,7 @@
         <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <item name="colorAccent">@color/secondaryLightColor</item>
-        <item name="android:textColorPrimary">@color/primaryTextColor</item>
-        <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
-    </style>
-
-    <style name="AppTheme.ActionBar" parent="Widget.MaterialComponents.Light.ActionBar.Solid">
-        <item name="background">@color/primaryDarkColor</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <style name="AppTheme.Button.Inverse" parent="Widget.MaterialComponents.Button">
@@ -26,4 +19,22 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppTheme.Button.Grayscale" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/darkColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorAccent">@color/secondaryLightColor</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
 </resources>

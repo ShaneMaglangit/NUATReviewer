@@ -1,12 +1,13 @@
 package com.shanemaglangit.nuatreviewer.data
 
-import com.google.firebase.firestore.DocumentId
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class Question (
-    @DocumentId
-    val questionId: String = "",
-    val topic: String = "",
-    val question: String = "",
-    val answer: String = "",
-    val options: List<String> = listOf()
+@Entity(tableName="question_table")
+data class Question (
+    @PrimaryKey(autoGenerate = true)
+    var questionId: Long = 0L,
+    var questionTopicId: Long = 0L,
+    val question: String,
+    val answer: String
 )
