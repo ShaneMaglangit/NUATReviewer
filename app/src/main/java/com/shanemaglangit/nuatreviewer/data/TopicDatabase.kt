@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import timber.log.Timber
+import com.shanemaglangit.nuatreviewer.util.Converter
 
-@Database(entities = [Topic::class, Question::class], version = 1, exportSchema = false)
+@Database(entities = [Topic::class, Question::class], version = 3, exportSchema = false)
+@TypeConverters(Converter::class)
 abstract class TopicDatabase : RoomDatabase() {
     abstract fun topicDao(): TopicDatabaseDao
 
@@ -20,7 +22,6 @@ abstract class TopicDatabase : RoomDatabase() {
                 var instance = INSTANCE
 
                 if (instance == null) {
-                    Timber.d("Creating instance")
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         TopicDatabase::class.java,
@@ -29,7 +30,6 @@ abstract class TopicDatabase : RoomDatabase() {
                         .addCallback(object : RoomDatabase.Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)
-                                Timber.d("onCreate called!")
 
                                 Thread(Runnable {
                                     getInstance(context).topicDao()
@@ -39,8 +39,6 @@ abstract class TopicDatabase : RoomDatabase() {
 
                             override fun onOpen(db: SupportSQLiteDatabase) {
                                 super.onOpen(db)
-                                Timber.d("onOpen called!")
-
                                 // TODO: Reminder to fix this.
                                 /**
                                  * I have no idea of onCreate is actually working so I added this

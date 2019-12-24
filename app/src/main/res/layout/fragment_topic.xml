@@ -41,54 +41,9 @@
 
             <LinearLayout
                 android:id="@+id/linear_math"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button_arithmetic"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Arithmetic"
-                    android:textAllCaps="false"
-                    android:textColor="@color/secondaryTextColor" />
-
-                <Button
-                    android:id="@+id/button_algebra"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Algebra"
-                    android:textAllCaps="false"
-                    android:textColor="@color/secondaryTextColor" />
-
-                <Button
-                    android:id="@+id/button_geometry"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Geometry"
-                    android:textAllCaps="false"
-                    android:textColor="@color/secondaryTextColor" />
-
-                <Button
-                    android:id="@+id/button_trigonometry"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Trigonometry"
-                    android:textAllCaps="false"
-                    android:textColor="@color/secondaryTextColor" />
-            </LinearLayout>
+                android:orientation="horizontal" />
         </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView

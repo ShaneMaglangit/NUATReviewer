@@ -39,5 +39,33 @@
         <argument
             android:name="topicId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_lessonFragment_to_questionFragment"
+            app:destination="@id/questionFragment"
+            app:popUpTo="@+id/lessonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.question.QuestionFragment"
+        tools:layout="@layout/fragment_question" >
+        <argument
+            android:name="topicId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_questionFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@+id/lessonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.result.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="correctAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="totalQuestions"
+            app:argType="integer" />
     </fragment>
 </navigation>

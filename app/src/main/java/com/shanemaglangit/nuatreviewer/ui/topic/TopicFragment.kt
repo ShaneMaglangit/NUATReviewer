@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,9 +26,9 @@ import org.koin.android.ext.android.inject
 class TopicFragment : Fragment() {
     private lateinit var binding: FragmentTopicBinding
     private lateinit var topicViewModel: TopicViewModel
+    private lateinit var topicAdapter: TopicAdapter
     private val arguments: TopicFragmentArgs by navArgs()
     private val database: TopicDatabaseDao by inject()
-    private lateinit var topicAdapter: TopicAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +41,15 @@ class TopicFragment : Fragment() {
             )
 
         setupSupportActionBar()
-        setupObserver()
+        setupObservers()
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         topicAdapter = TopicAdapter(TopicListener {
-            findNavController().navigate(TopicFragmentDirections.actionTopicFragmentToLessonFragment(it))
+            findNavController().navigate(
+                TopicFragmentDirections.actionTopicFragmentToLessonFragment(
+                    it
+                )
+            )
         })
 
         binding.recyclerTopics.layoutManager = layoutManager
@@ -53,9 +59,29 @@ class TopicFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupObserver() {
+    private fun setupObservers() {
         topicViewModel.topics.observe(this, Observer {
             if (it != null) topicAdapter.submitList(it)
+        })
+
+        topicViewModel.categories.observe(this, Observer {
+            if (it != null) {
+                topicViewModel.loadTopics()
+                it.forEach { category ->
+                    val buttonCategory = Button(context).apply {
+                        text = category
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        setOnClickListener {
+                            topicViewModel.loadTopics(category)
+                        }
+                    }
+
+                    binding.linearMath.addView(buttonCategory)
+                }
+            }
         })
     }
 

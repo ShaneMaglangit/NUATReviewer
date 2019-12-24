@@ -15,15 +15,31 @@ class TopicViewModel(val database: TopicDatabaseDao, subject: String) : ViewMode
     val topics: LiveData<List<Topic>>
         get() = _topics
 
+    private val _categories = MutableLiveData<List<String>>()
+    val categories: LiveData<List<String>>
+        get() = _categories
+
     init {
         uiScope.launch {
-            _topics.value = getAllTopics(subject)
+            _categories.value = getCategoriesBySubject(subject)
         }
     }
 
-    private suspend fun getAllTopics(subject: String) : List<Topic> {
+    fun loadTopics(category: String? = null) {
+        uiScope.launch {
+            _topics.value = getTopicsByCategory(category ?: _categories.value!![0])
+        }
+    }
+
+    private suspend fun getCategoriesBySubject(subject: String) : List<String> {
         return withContext(Dispatchers.IO) {
-            database.getAllTopicBySubject(subject)
+            database.getCategoryBySubject(subject)
+        }
+    }
+
+    private suspend fun getTopicsByCategory(category: String) : List<Topic> {
+        return withContext(Dispatchers.IO) {
+            database.getTopicIdAndTitleByCategory(category)
         }
     }
 

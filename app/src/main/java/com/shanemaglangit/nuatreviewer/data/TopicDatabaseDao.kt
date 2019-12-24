@@ -34,7 +34,12 @@ interface TopicDatabaseDao {
     @Query("SELECT * FROM topic_table WHERE subject = :subject")
     fun getAllTopicBySubject(subject: String): List<Topic>
 
-//    @Transaction
-//    @Query("SELECT * FROM topic_table")
-//    fun getTopicsWithQuestion(): List<TopicWithQuestion>
+    @Query("SELECT DISTINCT category FROM topic_table WHERE subject = :subject")
+    fun getCategoryBySubject(subject: String): List<String>
+
+    @Query("SELECT topicId, title FROM topic_table WHERE category = :category")
+    fun getTopicIdAndTitleByCategory(category: String): List<Topic>
+
+    @Query("SELECT * FROM question_table WHERE questionTopicId = :topicId")
+    fun getQuestionsByTopicId(topicId: Long): MutableList<Question>
 }

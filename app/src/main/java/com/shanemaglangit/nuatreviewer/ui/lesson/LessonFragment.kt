@@ -53,6 +53,10 @@ class LessonFragment : Fragment() {
     }
 
     private fun setupListeners() {
+        binding.buttonSampleTest.setOnClickListener {
+            findNavController().navigate(LessonFragmentDirections.actionLessonFragmentToQuestionFragment(lessonViewModel.topic.value!!.topicId))
+        }
+
         binding.buttonReturn.setOnClickListener {
             findNavController().navigateUp()
         }
