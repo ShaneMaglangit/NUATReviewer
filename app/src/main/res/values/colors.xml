@@ -7,7 +7,7 @@
     <color name="secondaryLightColor">#ffff5f</color>
     <color name="secondaryDarkColor">#c3a000</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#2F3640</color>
+    <color name="secondaryTextColor">#1e272e</color>
     <color name="defaultTextColor">@android:color/tertiary_text_dark</color>
-    <color name="darkColor">#121212</color>
+    <color name="darkColor">#1e272e</color>
 </resources>

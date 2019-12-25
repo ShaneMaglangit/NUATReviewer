@@ -43,7 +43,7 @@ class QuestionViewModel(private val database: TopicDatabaseDao, private val topi
             add(_currentQuestion.value!!.answer)
         }
 
-    fun loadQuestion() {
+    fun loadQuestion() : Boolean {
         if(_question.value!!.size > 0) {
             val questionIndex = Random.nextInt(_question.value!!.size)
 
@@ -52,6 +52,8 @@ class QuestionViewModel(private val database: TopicDatabaseDao, private val topi
         } else {
             _testDone.value = true
         }
+
+        return _testDone.value ?: false
     }
 
     fun testDoneCompleted() {

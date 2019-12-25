@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.welcome.WelcomeFragment">
 
-    <Button
-        android:id="@+id/button_aptitude"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/text_aptitude"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button_language"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_language"
-        app:layout_constraintTop_toTopOf="@+id/button_language"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/text_choose"
         android:layout_width="wrap_content"
@@ -39,62 +20,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_math"
+        style="@android:style/Widget.Material.ImageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="5dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/text_mathematics"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginEnd="4dp"
+        android:background="@null"
+        android:contentDescription="@string/text_mathematics"
+        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/button_science"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_choose" />
+        app:layout_constraintTop_toBottomOf="@+id/text_choose"
+        app:srcCompat="@drawable/ic_mathematics" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_science"
+        style="@android:style/Widget.Material.ImageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/secondaryColor"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/text_science"
-        android:textAllCaps="false"
-        android:textColor="@color/secondaryTextColor"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:background="@null"
+        android:contentDescription="@string/text_science"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/button_math"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_math"
-        app:layout_constraintTop_toTopOf="@+id/button_math" />
+        app:layout_constraintTop_toTopOf="@+id/button_math"
+        app:srcCompat="@drawable/ic_science" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_language"
+        style="@android:style/Widget.Material.ImageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="5dp"
-        android:backgroundTint="@color/secondaryColor"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/text_language"
-        android:textAllCaps="false"
-        android:textColor="@color/secondaryTextColor"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@null"
+        android:contentDescription="@string/text_language"
+        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/button_aptitude"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_math" />
+        app:layout_constraintTop_toBottomOf="@+id/button_math"
+        app:srcCompat="@drawable/ic_language" />
+
+    <ImageButton
+        android:id="@+id/button_aptitude"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:contentDescription="@string/text_aptitude"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/button_language"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_language"
+        app:layout_constraintTop_toTopOf="@+id/button_language"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_aptitude" />
 
     <Button
         android:id="@+id/button_about"

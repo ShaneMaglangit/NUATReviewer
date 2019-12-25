@@ -36,19 +36,6 @@ abstract class TopicDatabase : RoomDatabase() {
                                         .insertAllTopicWithQuestions(TopicData.populateData())
                                 }).start()
                             }
-
-                            override fun onOpen(db: SupportSQLiteDatabase) {
-                                super.onOpen(db)
-                                // TODO: Reminder to fix this.
-                                /**
-                                 * I have no idea of onCreate is actually working so I added this
-                                 * in place to ensure that the data are being loaded.
-                                 */
-                                Thread(Runnable {
-                                    getInstance(context).topicDao()
-                                        .insertAllTopicWithQuestions(TopicData.populateData())
-                                }).start()
-                            }
                         })
                         .fallbackToDestructiveMigration()
                         .build()

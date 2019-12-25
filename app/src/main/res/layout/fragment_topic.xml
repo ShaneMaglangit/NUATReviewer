@@ -13,19 +13,16 @@
         tools:context=".ui.topic.TopicFragment">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_header"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:adjustViewBounds="false"
             android:contentDescription="@string/topic_header_image_text"
             app:layout_constraintDimensionRatio="2:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_mathematics" />
+            tools:srcCompat="@drawable/ic_language_header" />
 
         <HorizontalScrollView
             android:id="@+id/horizontal_scroll_mathematics"
@@ -37,7 +34,7 @@
             android:scrollbarFadeDuration="200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toBottomOf="@+id/image_header">
 
             <LinearLayout
                 android:id="@+id/linear_math"

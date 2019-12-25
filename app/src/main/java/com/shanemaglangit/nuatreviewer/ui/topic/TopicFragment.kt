@@ -1,7 +1,7 @@
 package com.shanemaglangit.nuatreviewer.ui.topic
 
 
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +19,7 @@ import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import com.shanemaglangit.nuatreviewer.databinding.FragmentTopicBinding
+import com.shanemaglangit.nuatreviewer.util.Subjects
 import com.shanemaglangit.nuatreviewer.util.TopicAdapter
 import com.shanemaglangit.nuatreviewer.util.TopicListener
 import org.koin.android.ext.android.inject
@@ -40,6 +41,7 @@ class TopicFragment : Fragment() {
                 TopicViewModel::class.java
             )
 
+        setupUI()
         setupSupportActionBar()
         setupObservers()
 
@@ -85,12 +87,31 @@ class TopicFragment : Fragment() {
         })
     }
 
+    private fun setupUI() {
+        binding.imageHeader.setImageResource(when(arguments.subject) {
+            Subjects.MATH -> R.drawable.ic_math_header
+            Subjects.SCIENCE -> R.drawable.ic_science_header
+            Subjects.LANGUAGE -> R.drawable.ic_language_header
+            Subjects.APTITUDE -> R.drawable.ic_aptitude_header
+            else -> R.drawable.ic_math_header
+        })
+    }
+
     private fun setupSupportActionBar() {
         val activity = requireActivity() as MainActivity
-        activity.setSupportActionBarColor(Color.TRANSPARENT)
         activity.supportActionBar!!.apply {
-            title = arguments.subject
+            title = ""
             show()
         }
+
+        var actionBarColorId = when(arguments.subject) {
+            Subjects.MATH, Subjects.APTITUDE -> R.color.primaryColor
+            else -> R.color.secondaryColor
+        }
+
+        activity.setSupportActionBarColor(
+            if(Build.VERSION.SDK_INT > 23) resources.getColor(actionBarColorId, activity.theme)
+            else resources.getColor(actionBarColorId)
+        )
     }
 }

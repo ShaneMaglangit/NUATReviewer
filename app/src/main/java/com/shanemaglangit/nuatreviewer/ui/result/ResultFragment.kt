@@ -12,9 +12,6 @@ import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
 import kotlinx.android.synthetic.main.fragment_result.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class ResultFragment : Fragment() {
     private val arguments: ResultFragmentArgs by navArgs()
 
@@ -32,7 +29,7 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         text_score.text = "${arguments.correctAnswers}"
-        text_score_sub.text = "out of ${arguments.totalQuestions} questions"
+        text_score_sub.text = "Out of ${arguments.totalQuestions}"
 
         button_return.setOnClickListener {
             findNavController().navigateUp()

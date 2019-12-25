@@ -6,15 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
+import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import com.shanemaglangit.nuatreviewer.util.Subjects
 import kotlinx.android.synthetic.main.fragment_welcome.*
+import org.koin.android.ext.android.inject
 
 class WelcomeFragment : Fragment() {
+    private val database: TopicDatabaseDao by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,7 @@ class WelcomeFragment : Fragment() {
         button_aptitude.setClickListener(Subjects.APTITUDE)
     }
 
-    private fun Button.setClickListener(subject: String) {
+    private fun ImageButton.setClickListener(subject: String) {
         this.setOnClickListener {
             findNavController().navigate(
                 WelcomeFragmentDirections.actionWelcomeFragmentToTopicFragment(subject)

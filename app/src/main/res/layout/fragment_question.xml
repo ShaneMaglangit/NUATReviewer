@@ -11,12 +11,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/darkColor"
         tools:context=".ui.question.QuestionFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Dark">
 
             <TextView
                 android:id="@+id/text_question"
@@ -25,20 +27,24 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="14sp"
                 android:text="@{questionViewModel.currentQuestion.question}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/button_a"
+                style="@style/AppTheme.Button.Outline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
+                android:background="@drawable/rounded_rect_outline"
+                android:backgroundTint="@null"
+                android:padding="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/button_b"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +52,13 @@
 
             <Button
                 android:id="@+id/button_b"
+                style="@style/AppTheme.Button.Outline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_rect_outline"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/button_a"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -58,11 +67,14 @@
 
             <Button
                 android:id="@+id/button_c"
+                style="@style/AppTheme.Button.Outline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_rect_outline"
+                android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/button_next"
                 app:layout_constraintEnd_toStartOf="@+id/button_d"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -71,10 +83,13 @@
 
             <Button
                 android:id="@+id/button_d"
+                style="@style/AppTheme.Button.Outline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_rect_outline"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/button_c"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -83,11 +98,12 @@
 
             <Button
                 android:id="@+id/button_next"
+                style="@style/AppTheme.Button.Inverse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="@string/button_next_text"
-                android:enabled="false"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

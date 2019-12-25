@@ -29,6 +29,11 @@ class QuestionFragment : Fragment() {
     private lateinit var activity: MainActivity
     private var questionNumber = 1
 
+    private var secondaryColor = 0
+    private var darkColor = 0
+
+    private lateinit var optionButtons: List<Button>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +44,9 @@ class QuestionFragment : Fragment() {
             ViewModelProvider(this, QuestionViewModelFactory(database, arguments.topicId)).get(
                 QuestionViewModel::class.java
             )
+        optionButtons = listOf(binding.buttonA, binding.buttonB, binding.buttonC, binding.buttonD)
 
+        initColors()
         setupSupportActionBar()
         setupObserver()
         setupListeners()
@@ -50,16 +57,18 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
+    private fun initColors() {
+        if (Build.VERSION.SDK_INT > 23) {
+            secondaryColor = resources.getColor(R.color.secondaryColor, activity.theme)
+            darkColor = resources.getColor(R.color.darkColor, activity.theme)
+        } else {
+            secondaryColor = resources.getColor(R.color.secondaryColor)
+            darkColor = resources.getColor(R.color.darkColor)
+        }
+    }
+
     private fun setupSupportActionBar() {
         activity.supportActionBar?.apply {
-            //            setBackgroundDrawable(
-//                ColorDrawable(
-//                    if (Build.VERSION.SDK_INT > 23) resources.getColor(
-//                        R.color.secondaryColor,
-//                        activity.theme
-//                    ) else resources.getColor(R.color.secondaryDarkColor)
-//                )
-//            )
             title = "Question #$questionNumber"
             show()
         }
@@ -68,8 +77,8 @@ class QuestionFragment : Fragment() {
     private fun setupObserver() {
         questionViewModel.question.observe(this, Observer {
             if (it != null) {
-                questionViewModel.loadQuestion()
                 questionViewModel.calculateTotalQuestions()
+                questionViewModel.loadQuestion()
             }
         })
 
@@ -77,54 +86,48 @@ class QuestionFragment : Fragment() {
             if (it != null) {
                 val options = questionViewModel.loadOptions().apply { shuffle() }
 
-                binding.buttonA.text = options[0]
-                binding.buttonB.text = options[1]
-                binding.buttonC.text = options[2]
-                binding.buttonD.text = options[3]
+                optionButtons.forEachIndexed { index, button ->
+                    button.text = options[index]
+                }
             }
         })
 
         questionViewModel.testDone.observe(this, Observer {
-            findNavController()
-                .navigate(
-                    QuestionFragmentDirections
-                        .actionQuestionFragmentToResultFragment(
-                            questionViewModel.correctAnswers,
-                            questionViewModel.totalQuestions
-                        )
-                )
+            if(it) {
+                findNavController()
+                    .navigate(
+                        QuestionFragmentDirections
+                            .actionQuestionFragmentToResultFragment(
+                                questionViewModel.correctAnswers,
+                                questionViewModel.totalQuestions
+                            )
+                    )
+                questionViewModel.testDoneCompleted()
+            }
         })
     }
 
     private fun setupListeners() {
-        binding.buttonA.setAnswerListener()
-        binding.buttonB.setAnswerListener()
-        binding.buttonC.setAnswerListener()
-        binding.buttonD.setAnswerListener()
+        optionButtons.forEach { it.setAnswerListener() }
 
         binding.buttonNext.setOnClickListener {
-            questionViewModel.loadQuestion()
-            resetButtonState()
+            val noMoreQuestion = questionViewModel.loadQuestion()
 
-            questionNumber++
-            activity.supportActionBar!!.title = "Question #$questionNumber"
+            if(!noMoreQuestion) {
+                questionNumber++
+                toggleStyle()
+                optionButtons.forEach { it.isClickable = true }
+                binding.buttonNext.visibility = View.GONE
+                activity.supportActionBar!!.title = "Question #$questionNumber"
+            }
         }
     }
 
-    private fun resetButtonState() {
-        val primaryColor: Int
-
-        if (Build.VERSION.SDK_INT > 23) {
-            primaryColor = resources.getColor(R.color.primaryColor, activity!!.theme)
-        } else {
-            primaryColor = resources.getColor(R.color.primaryColor)
+    private fun toggleStyle() {
+        optionButtons.forEach {
+            it.setBackgroundColor(0)
+            it.setTextColor(Color.WHITE)
         }
-
-        binding.buttonNext.isEnabled = false
-        binding.buttonA.setBackgroundColor(primaryColor)
-        binding.buttonB.setBackgroundColor(primaryColor)
-        binding.buttonC.setBackgroundColor(primaryColor)
-        binding.buttonD.setBackgroundColor(primaryColor)
     }
 
     private fun Button.setAnswerListener() {
@@ -132,7 +135,8 @@ class QuestionFragment : Fragment() {
             val correctAnswer = questionViewModel.currentQuestion.value!!.answer
 
             if (correctAnswer == this.text.toString()) {
-                this.setBackgroundColor(Color.GREEN)
+                this.setBackgroundColor(secondaryColor)
+                this.setTextColor(darkColor)
                 questionViewModel.answerCorrect()
             } else {
                 this.setBackgroundColor(Color.RED)
@@ -145,7 +149,8 @@ class QuestionFragment : Fragment() {
                 }
             }
 
-            binding.buttonNext.isEnabled = true
+            optionButtons.forEach { it.isClickable = false }
+            binding.buttonNext.visibility = View.VISIBLE
         }
     }
 }
