@@ -1,8 +1,6 @@
 package com.shanemaglangit.nuatreviewer.ui.lesson
 
 
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,14 +62,6 @@ class LessonFragment : Fragment() {
 
     private fun setupSupportActionBar() {
         activity.supportActionBar?.apply {
-            setBackgroundDrawable(
-                ColorDrawable(
-                    if (Build.VERSION.SDK_INT > 23) resources.getColor(
-                        R.color.secondaryColor,
-                        activity.theme
-                    ) else resources.getColor(R.color.secondaryDarkColor)
-                )
-            )
             title = "Operations"
             show()
         }

@@ -42,4 +42,7 @@ interface TopicDatabaseDao {
 
     @Query("SELECT * FROM question_table WHERE questionTopicId = :topicId")
     fun getQuestionsByTopicId(topicId: Long): MutableList<Question>
+
+    @Query("SELECT * FROM topic_table LIMIT 1")
+    fun dummyQuery(): Topic?
 }

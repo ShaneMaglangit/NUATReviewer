@@ -10,6 +10,11 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <item name="colorAccent">@color/secondaryLightColor</item>
         <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:statusBarColor">@color/darkColor</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/primaryTextColor</item>
     </style>
 
     <style name="AppTheme.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">

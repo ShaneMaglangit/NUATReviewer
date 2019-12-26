@@ -5,13 +5,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import com.shanemaglangit.nuatreviewer.di.appModule
+import kotlinx.coroutines.*
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 class MainActivity : AppCompatActivity() {
+    private val database: TopicDatabaseDao by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             modules(appModule)
         }
 
+        performDummyQuery()
+
         NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))
     }
 
@@ -35,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp()
     }
 
+    /**
+     * Needed to ensure that the database onCreate callback is being called
+     */
+    private fun performDummyQuery() {
+        CoroutineScope(Dispatchers.Main + Job()).launch {
+            withContext(Dispatchers.IO) {
+                database.dummyQuery()
+            }
+        }
+    }
     fun setSupportActionBarColor(color: Int) {
         supportActionBar?.apply {
             setBackgroundDrawable(ColorDrawable(color))

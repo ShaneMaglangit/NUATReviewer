@@ -93,7 +93,7 @@ class QuestionFragment : Fragment() {
         })
 
         questionViewModel.testDone.observe(this, Observer {
-            if(it) {
+            if (it) {
                 findNavController()
                     .navigate(
                         QuestionFragmentDirections
@@ -112,13 +112,15 @@ class QuestionFragment : Fragment() {
 
         binding.buttonNext.setOnClickListener {
             val noMoreQuestion = questionViewModel.loadQuestion()
+            binding.buttonNext.visibility = View.GONE
 
-            if(!noMoreQuestion) {
+            if (!noMoreQuestion) {
                 questionNumber++
                 toggleStyle()
                 optionButtons.forEach { it.isClickable = true }
-                binding.buttonNext.visibility = View.GONE
                 activity.supportActionBar!!.title = "Question #$questionNumber"
+            } else {
+                optionButtons.forEach { it.visibility = View.GONE }
             }
         }
     }

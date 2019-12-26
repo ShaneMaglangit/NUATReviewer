@@ -45,7 +45,7 @@ class TopicFragment : Fragment() {
         setupSupportActionBar()
         setupObservers()
 
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         topicAdapter = TopicAdapter(TopicListener {
             findNavController().navigate(
                 TopicFragmentDirections.actionTopicFragmentToLessonFragment(
@@ -104,14 +104,9 @@ class TopicFragment : Fragment() {
             show()
         }
 
-        var actionBarColorId = when(arguments.subject) {
-            Subjects.MATH, Subjects.APTITUDE -> R.color.primaryColor
-            else -> R.color.secondaryColor
-        }
-
         activity.setSupportActionBarColor(
-            if(Build.VERSION.SDK_INT > 23) resources.getColor(actionBarColorId, activity.theme)
-            else resources.getColor(actionBarColorId)
+            if(Build.VERSION.SDK_INT > 23) resources.getColor(R.color.darkColor, activity.theme)
+            else resources.getColor(R.color.darkColor)
         )
     }
 }
