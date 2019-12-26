@@ -1,6 +1,9 @@
 package com.shanemaglangit.nuatreviewer.ui.topic
 
 
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -72,19 +77,34 @@ class TopicFragment : Fragment() {
                 it.forEach { category ->
                     val buttonCategory = Button(context).apply {
                         text = category
+                        setBackgroundColor(Color.WHITE)
                         layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
                         setOnClickListener {
+                            binding.linearMath.children.forEach {child ->
+                                if(child is Button) {
+                                    child.typeface = Typeface.create(ResourcesCompat.getFont(context, R.font.montserrat), Typeface.NORMAL)
+                                    child.background = ColorDrawable(Color.WHITE)
+                                }
+                            }
+                            toggleSelectedCategory(this)
                             topicViewModel.loadTopics(category)
                         }
                     }
 
                     binding.linearMath.addView(buttonCategory)
                 }
+
+                toggleSelectedCategory(binding.linearMath.getChildAt(0) as Button)
             }
         })
+    }
+
+    private fun toggleSelectedCategory(view: Button) {
+        view.typeface = Typeface.create(ResourcesCompat.getFont(context!!, R.font.montserrat), Typeface.BOLD)
+        view.background = resources.getDrawable(R.drawable.selected_category_background, activity!!.theme)
     }
 
     private fun setupUI() {
