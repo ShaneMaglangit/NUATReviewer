@@ -31,6 +31,10 @@ class WelcomeFragment : Fragment() {
         button_science.setClickListener(Subjects.SCIENCE)
         button_language.setClickListener(Subjects.LANGUAGE)
         button_aptitude.setClickListener(Subjects.APTITUDE)
+
+        button_about.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeFragment_to_aboutFragment)
+        }
     }
 
     private fun ImageButton.setClickListener(subject: String) {

@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             modules(appModule)
         }
 
+        Timber.i(getDatabasePath("topic_database").absolutePath)
+
         performDummyQuery()
 
         NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))

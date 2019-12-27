@@ -77,16 +77,24 @@ class TopicFragment : Fragment() {
                 it.forEach { category ->
                     val buttonCategory = Button(context).apply {
                         text = category
-                        typeface = Typeface.create(ResourcesCompat.getFont(context, R.font.montserrat), Typeface.NORMAL)
+                        typeface = Typeface.create(
+                            ResourcesCompat.getFont(context, R.font.montserrat),
+                            Typeface.NORMAL
+                        )
                         setBackgroundColor(Color.WHITE)
                         layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
-                        )
+                        ).apply { marginStart = 40 }
                         setOnClickListener {
-                            binding.linearMath.children.forEach {child ->
-                                if(child is Button) {
-                                    child.typeface = Typeface.create(ResourcesCompat.getFont(context, R.font.montserrat), Typeface.NORMAL)
+                            binding.linearMath.children.forEach { child ->
+                                if (child is Button) {
+                                    child.typeface = Typeface.create(
+                                        ResourcesCompat.getFont(
+                                            context,
+                                            R.font.montserrat
+                                        ), Typeface.NORMAL
+                                    )
                                     child.background = ColorDrawable(Color.WHITE)
                                 }
                             }
@@ -104,18 +112,22 @@ class TopicFragment : Fragment() {
     }
 
     private fun toggleSelectedCategory(view: Button) {
-        view.typeface = Typeface.create(ResourcesCompat.getFont(context!!, R.font.montserrat), Typeface.BOLD)
-        view.background = resources.getDrawable(R.drawable.selected_category_background, activity!!.theme)
+        view.typeface =
+            Typeface.create(ResourcesCompat.getFont(context!!, R.font.montserrat), Typeface.BOLD)
+        view.background =
+            resources.getDrawable(R.drawable.selected_category_background, activity!!.theme)
     }
 
     private fun setupUI() {
-        binding.imageHeader.setImageResource(when(arguments.subject) {
-            Subjects.MATH -> R.drawable.ic_math_header
-            Subjects.SCIENCE -> R.drawable.ic_science_header
-            Subjects.LANGUAGE -> R.drawable.ic_language_header
-            Subjects.APTITUDE -> R.drawable.ic_aptitude_header
-            else -> R.drawable.ic_math_header
-        })
+        binding.imageHeader.setImageResource(
+            when (arguments.subject) {
+                Subjects.MATH -> R.drawable.ic_math_header
+                Subjects.SCIENCE -> R.drawable.ic_science_header
+                Subjects.LANGUAGE -> R.drawable.ic_language_header
+                Subjects.APTITUDE -> R.drawable.ic_aptitude_header
+                else -> R.drawable.ic_math_header
+            }
+        )
     }
 
     private fun setupSupportActionBar() {
@@ -126,7 +138,7 @@ class TopicFragment : Fragment() {
         }
 
         activity.setSupportActionBarColor(
-            if(Build.VERSION.SDK_INT > 23) resources.getColor(R.color.darkColor, activity.theme)
+            if (Build.VERSION.SDK_INT > 23) resources.getColor(R.color.darkColor, activity.theme)
             else resources.getColor(R.color.darkColor)
         )
     }
