@@ -1,7 +1,10 @@
 package com.shanemaglangit.nuatreviewer.ui.lesson
 
 
+import android.os.Build
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,11 +34,15 @@ class LessonFragment : Fragment() {
     ): View? {
         activity = requireActivity() as MainActivity
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
-        lessonViewModel = ViewModelProvider(this, LessonViewModelFactory(database, arguments.topicId)).get(LessonViewModel::class.java)
+        lessonViewModel =
+            ViewModelProvider(this, LessonViewModelFactory(database, arguments.topicId)).get(
+                LessonViewModel::class.java
+            )
 
         setupSupportActionBar()
         setupObservers()
         setupListeners()
+        setupDescription()
 
         binding.lessonViewModel = lessonViewModel
         binding.lifecycleOwner = this
@@ -43,16 +50,50 @@ class LessonFragment : Fragment() {
         return binding.root
     }
 
+    private fun setupDescription() {
+        binding.textDescription.post {
+        }
+    }
+
     private fun setupObservers() {
         lessonViewModel.topic.observe(this, Observer {
-            if(it != null) activity.supportActionBar?.title = it.title
+            if (it != null) {
+                if(it.description != null) {
+                    val stringSpan = SpannableStringBuilder()
+
+                    it.description.split("<img>").forEachIndexed { index, text ->
+                        if (index % 2 == 0) {
+                            stringSpan.append("$text\n ")
+                        } else {
+                            val imageId = resources.getIdentifier("ic_science", "drawable", activity.packageName)
+                            val image =
+                                if(Build.VERSION.SDK_INT > 23) {
+                                    resources.getDrawable(imageId, activity.theme)
+                                } else {
+                                    resources.getDrawable(imageId)
+                                }
+
+                            image.setBounds(0, 0, binding.textDescription.width, binding.textDescription.width / 2)
+                            stringSpan.setSpan(ImageSpan(image), stringSpan.length - 1, stringSpan.length, 0)
+                        }
+                    }
+
+                    binding.textDescription.text = stringSpan
+                }
+
+                activity.supportActionBar?.title = it.title
+            }
         })
 
     }
 
     private fun setupListeners() {
         binding.buttonSampleTest.setOnClickListener {
-            findNavController().navigate(LessonFragmentDirections.actionLessonFragmentToQuestionFragment(lessonViewModel.topic.value!!.topicId))
+            findNavController().navigate(
+                LessonFragmentDirections.actionLessonFragmentToQuestionFragment(
+                    lessonViewModel.topic.value!!.topicId
+                )
+            )
         }
 
         binding.buttonReturn.setOnClickListener {

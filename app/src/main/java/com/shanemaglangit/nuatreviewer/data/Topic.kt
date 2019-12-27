@@ -9,5 +9,6 @@ data class Topic(
     var topicId: Long = 0L,
     val subject: String?,
     val category: String?,
-    val title: String?
+    val title: String?,
+    val description: String?
 )
