@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.shanemaglangit.nuatreviewer.util.Converter
 
-@Database(entities = [Topic::class, Question::class], version = 3, exportSchema = false)
+@Database(entities = [Topic::class, Question::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class TopicDatabase : RoomDatabase() {
     abstract fun topicDao(): TopicDatabaseDao

@@ -10,5 +10,5 @@ data class Topic(
     val subject: String?,
     val category: String?,
     val title: String?,
-    val description: String?
+    val description: String? = null
 )

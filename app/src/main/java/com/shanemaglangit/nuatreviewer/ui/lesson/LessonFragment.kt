@@ -79,6 +79,8 @@ class LessonFragment : Fragment() {
                     }
 
                     binding.textDescription.text = stringSpan
+                } else {
+                    binding.textDescription.text = "No description found"
                 }
 
                 activity.supportActionBar?.title = it.title
