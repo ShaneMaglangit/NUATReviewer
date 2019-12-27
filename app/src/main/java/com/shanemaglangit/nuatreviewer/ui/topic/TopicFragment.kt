@@ -77,6 +77,7 @@ class TopicFragment : Fragment() {
                 it.forEach { category ->
                     val buttonCategory = Button(context).apply {
                         text = category
+                        typeface = Typeface.create(ResourcesCompat.getFont(context, R.font.montserrat), Typeface.NORMAL)
                         setBackgroundColor(Color.WHITE)
                         layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
