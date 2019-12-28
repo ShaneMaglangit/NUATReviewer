@@ -3,10 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.about.AboutFragment" >
 
-    <WebView
-        android:id="@+id/webview_test"
+    <TextView
+        android:id="@+id/text_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/about_profile"
+        android:textAlignment="center"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.6"
+        android:background="@color/darkColor" />
+
+    <TextView
+        android:id="@+id/text_head_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_head_team"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_team_shane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_shane"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_team_malsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_magtira"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_team_mico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_medina"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_team_adrian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_malsi"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp" />
 </LinearLayout>

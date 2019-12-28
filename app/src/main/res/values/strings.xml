@@ -14,7 +14,11 @@
     <string name="text_about">About Us</string>
     <string name="topic_header_image_text">Topic Header Image</string>
     <string name="button_next_text">Next</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="result_score_label">You correctly answered</string>
+    <string name="about_profile">We are a group of students under National University\'s College of Computing and Information Technology. We developed this application with the purpose of helping fellow students aiming to be a part of this institution.</string>
+    <string name="about_head_team">The Team</string>
+    <string name="about_shane">Shane Francis Maglangit - Lead Developer</string>
+    <string name="about_magtira">Mico Magtira - Developer</string>
+    <string name="about_medina">Adrian Medina - Developer</string>
+    <string name="about_malsi">John Lorenz Malsi - UI/UX Designer</string>
 </resources>
