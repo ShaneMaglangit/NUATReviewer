@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.shanemaglangit.nuatreviewer.util.Converter
 
 @Database(entities = [Topic::class, Question::class], version = 1, exportSchema = false)
@@ -27,16 +26,17 @@ abstract class TopicDatabase : RoomDatabase() {
                         TopicDatabase::class.java,
                         "topic_database"
                     )
-                        .addCallback(object : RoomDatabase.Callback() {
-                            override fun onCreate(db: SupportSQLiteDatabase) {
-                                super.onCreate(db)
-
-                                Thread(Runnable {
-                                    getInstance(context).topicDao()
-                                        .insertAllTopicWithQuestions(TopicData.populateData())
-                                }).start()
-                            }
-                        })
+                        .createFromAsset("topic_database")
+//                        .addCallback(object : RoomDatabase.Callback() {
+//                            override fun onCreate(db: SupportSQLiteDatabase) {
+//                                super.onCreate(db)
+//
+//                                Thread(Runnable {
+//                                    getInstance(context).topicDao()
+//                                        .insertAllTopicWithQuestions(TopicData.populateData())
+//                                }).start()
+//                            }
+//                        })
                         .fallbackToDestructiveMigration()
                         .build()
 

@@ -77,6 +77,7 @@ class TopicFragment : Fragment() {
                 it.forEach { category ->
                     val buttonCategory = Button(context).apply {
                         text = category
+                        stateListAnimator = null
                         typeface = Typeface.create(
                             ResourcesCompat.getFont(context, R.font.montserrat),
                             Typeface.NORMAL
