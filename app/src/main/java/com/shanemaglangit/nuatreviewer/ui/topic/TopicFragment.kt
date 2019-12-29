@@ -86,7 +86,9 @@ class TopicFragment : Fragment() {
                         layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
-                        ).apply { marginStart = 40 }
+                        ).apply {
+                            marginStart = 40
+                        }
                         setOnClickListener {
                             binding.linearMath.children.forEach { child ->
                                 if (child is Button) {
