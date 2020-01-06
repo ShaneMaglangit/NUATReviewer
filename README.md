@@ -11,4 +11,5 @@ Learn about the 4 core subjects included in the exam namely Mathematics, Science
 5. Data Binding
 6. Koin
 
-# Note: This project is still under development and the application may lack content. We are still working on the questions and learning resources that will be featured in the project.
+# Note: 
+This project is still under development and the application may lack content. We are still working on the questions and learning resources that will be featured in the project.
