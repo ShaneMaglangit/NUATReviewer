@@ -12,4 +12,4 @@ Learn about the 4 core subjects included in the exam namely Mathematics, Science
 6. Koin
 
 # Note: 
-The app is just a proof-of-concept. The app by itself if fully functional and ready to be deployed but it lacks content, questions, and learning resources necessary for it to perform properly s intended.
+The app is just a proof-of-concept. The app by itself is fully functional and ready to be deployed but it lacks content, questions, and learning resources necessary for it to perform properly s intended.
