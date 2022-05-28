@@ -43,8 +43,8 @@ class QuestionViewModel(private val database: TopicDatabaseDao, private val topi
             add(_currentQuestion.value!!.answer)
         }
 
-    fun loadQuestion() : Boolean {
-        if(_question.value!!.size > 0) {
+    fun loadQuestion(): Boolean {
+        if (_question.value!!.size > 0) {
             val questionIndex = Random.nextInt(_question.value!!.size)
 
             _currentQuestion.value = _question.value!![questionIndex]

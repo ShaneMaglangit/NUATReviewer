@@ -24,6 +24,7 @@ import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import com.shanemaglangit.nuatreviewer.databinding.FragmentTopicBinding
+import com.shanemaglangit.nuatreviewer.ui.welcome.WelcomeFragmentDirections
 import com.shanemaglangit.nuatreviewer.util.Subjects
 import com.shanemaglangit.nuatreviewer.util.TopicAdapter
 import com.shanemaglangit.nuatreviewer.util.TopicListener
@@ -39,12 +40,13 @@ class TopicFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_topic, container, false)
         topicViewModel =
-            ViewModelProvider(this, TopicViewModelFactory(database, arguments.subject)).get(
-                TopicViewModel::class.java
-            )
+            ViewModelProvider(
+                this,
+                TopicViewModelFactory(database, arguments.subject)
+            )[TopicViewModel::class.java]
 
         setupUI()
         setupSupportActionBar()
@@ -66,12 +68,22 @@ class TopicFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAddTopic.setOnClickListener {
+            findNavController().navigate(
+                TopicFragmentDirections.actionTopicFragmentToAddTopicFragment(arguments.subject, topicViewModel.categories.value!!.toTypedArray())
+            )
+        }
+    }
+
     private fun setupObservers() {
-        topicViewModel.topics.observe(this, Observer {
+        topicViewModel.topics.observe(viewLifecycleOwner, Observer {
             if (it != null) topicAdapter.submitList(it)
         })
 
-        topicViewModel.categories.observe(this, Observer {
+        topicViewModel.categories.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 topicViewModel.loadTopics()
                 it.forEach { category ->
@@ -116,9 +128,12 @@ class TopicFragment : Fragment() {
 
     private fun toggleSelectedCategory(view: Button) {
         view.typeface =
-            Typeface.create(ResourcesCompat.getFont(context!!, R.font.montserrat), Typeface.BOLD)
+            Typeface.create(
+                ResourcesCompat.getFont(requireContext(), R.font.montserrat),
+                Typeface.BOLD
+            )
         view.background =
-            resources.getDrawable(R.drawable.selected_category_background, activity!!.theme)
+            resources.getDrawable(R.drawable.selected_category_background, requireActivity().theme)
     }
 
     private fun setupUI() {

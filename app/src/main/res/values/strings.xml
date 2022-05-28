@@ -4,6 +4,7 @@
     <string name="button_sample_text">Try Sample Questions</string>
     <string name="title_arithmetic">Arithmetic</string>
     <string name="title_algebra">Algebra</string>
+    <string name="button_add_topic_text">Add Topic</string>
     <string name="button_test_text">Start Test</string>
     <string name="button_return_text">Go back</string>
     <string name="text_choose">Choose what to study</string>
@@ -17,8 +18,9 @@
     <string name="result_score_label">You correctly answered</string>
     <string name="about_profile">We are a group of students under National University\'s College of Computing and Information Technology. We developed this application with the purpose of helping fellow students aiming to be a part of this institution.</string>
     <string name="about_head_team">The Team</string>
-    <string name="about_shane">Shane Francis Maglangit - Lead Developer</string>
-    <string name="about_magtira">Mico Magtira - Developer</string>
-    <string name="about_medina">Adrian Medina - Developer</string>
-    <string name="about_malsi">John Lorenz Malsi - UI/UX Designer</string>
+    <string name="about_shane">Shane Francis Maglangit</string>
+    <string name="about_magtira">Mico Magtira</string>
+    <string name="about_delacruz">Jessica Nicole Dela Cruz </string>
+    <string name="about_lamar">Clarence Cruz Lamar</string>
+    <string name="edit_title_hint">Enter Title</string>
 </resources>

@@ -10,28 +10,29 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.shanemaglangit.nuatreviewer.MainActivity
 import com.shanemaglangit.nuatreviewer.R
-import kotlinx.android.synthetic.main.fragment_result.*
+import com.shanemaglangit.nuatreviewer.databinding.FragmentResultBinding
+import com.shanemaglangit.nuatreviewer.databinding.FragmentWelcomeBinding
 
 class ResultFragment : Fragment() {
+    private lateinit var binding: FragmentResultBinding
     private val arguments: ResultFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val activity = activity as MainActivity
-        activity.supportActionBar?.hide()
-
-        return inflater.inflate(R.layout.fragment_result, container, false)
+    ): View {
+        (requireActivity() as MainActivity).supportActionBar?.hide()
+        binding = FragmentResultBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        text_score.text = "${arguments.correctAnswers}"
-        text_score_sub.text = "Out of ${arguments.totalQuestions}"
+        binding.textScore.text = "${arguments.correctAnswers}"
+        binding.textScoreSub.text = "Out of ${arguments.totalQuestions}"
 
-        button_return.setOnClickListener {
+        binding.buttonReturn.setOnClickListener {
             findNavController().navigateUp()
         }
     }

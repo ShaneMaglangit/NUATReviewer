@@ -8,8 +8,8 @@ import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import kotlinx.coroutines.*
 
 class TopicViewModel(val database: TopicDatabaseDao, subject: String) : ViewModel() {
-    val job = Job()
-    val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     private val _topics = MutableLiveData<List<Topic>>()
     val topics: LiveData<List<Topic>>
@@ -31,13 +31,13 @@ class TopicViewModel(val database: TopicDatabaseDao, subject: String) : ViewMode
         }
     }
 
-    private suspend fun getCategoriesBySubject(subject: String) : List<String> {
+    private suspend fun getCategoriesBySubject(subject: String): List<String> {
         return withContext(Dispatchers.IO) {
             database.getCategoryBySubject(subject)
         }
     }
 
-    private suspend fun getTopicsByCategory(category: String) : List<Topic> {
+    private suspend fun getTopicsByCategory(category: String): List<Topic> {
         return withContext(Dispatchers.IO) {
             database.getTopicIdAndTitleByCategory(category)
         }

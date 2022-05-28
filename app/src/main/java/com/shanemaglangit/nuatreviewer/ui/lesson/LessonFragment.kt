@@ -27,7 +27,7 @@ class LessonFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         activity = requireActivity() as MainActivity
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
         lessonViewModel =
@@ -53,14 +53,18 @@ class LessonFragment : Fragment() {
     private fun setupListeners() {
         binding.buttonSampleTest.setOnClickListener {
             findNavController().navigate(
-                LessonFragmentDirections.actionLessonFragmentToQuestionFragment(
-                    lessonViewModel.topic.value!!.topicId
-                )
+                LessonFragmentDirections.actionLessonFragmentToQuestionFragment(arguments.topicId)
             )
         }
 
         binding.buttonReturn.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.buttonNew.setOnClickListener {
+            findNavController().navigate(
+                LessonFragmentDirections.actionLessonFragmentToAddQuestionFragment(arguments.topicId)
+            )
         }
     }
 

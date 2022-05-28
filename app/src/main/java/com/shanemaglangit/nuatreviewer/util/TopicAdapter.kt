@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shanemaglangit.nuatreviewer.data.Topic
 import com.shanemaglangit.nuatreviewer.databinding.TopicListItemBinding
 
-class TopicAdapter(val topicListener: TopicListener) : ListAdapter<Topic, TopicAdapter.ViewHolder>(TopicDiffCallback()) {
+class TopicAdapter(val topicListener: TopicListener) :
+    ListAdapter<Topic, TopicAdapter.ViewHolder>(TopicDiffCallback()) {
 
     public override fun getItem(position: Int): Topic {
         return super.getItem(position)
@@ -23,7 +24,8 @@ class TopicAdapter(val topicListener: TopicListener) : ListAdapter<Topic, TopicA
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: TopicListItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: TopicListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Topic, topicListener: TopicListener) {
             binding.topic = item

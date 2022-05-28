@@ -19,6 +19,7 @@ import com.shanemaglangit.nuatreviewer.R
 import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 import com.shanemaglangit.nuatreviewer.databinding.FragmentQuestionBinding
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class QuestionFragment : Fragment() {
     private lateinit var binding: FragmentQuestionBinding
@@ -75,14 +76,14 @@ class QuestionFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        questionViewModel.question.observe(this, Observer {
+        questionViewModel.question.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 questionViewModel.calculateTotalQuestions()
                 questionViewModel.loadQuestion()
             }
         })
 
-        questionViewModel.currentQuestion.observe(this, Observer {
+        questionViewModel.currentQuestion.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 val options = questionViewModel.loadOptions().apply { shuffle() }
 
@@ -92,7 +93,7 @@ class QuestionFragment : Fragment() {
             }
         })
 
-        questionViewModel.testDone.observe(this, Observer {
+        questionViewModel.testDone.observe(viewLifecycleOwner, Observer {
             if (it) {
                 findNavController()
                     .navigate(
@@ -127,7 +128,7 @@ class QuestionFragment : Fragment() {
 
     private fun toggleStyle() {
         optionButtons.forEach {
-            it.setBackgroundColor(0)
+            it.setBackgroundColor(darkColor)
             it.setTextColor(Color.WHITE)
         }
     }

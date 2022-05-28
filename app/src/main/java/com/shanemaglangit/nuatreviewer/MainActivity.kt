@@ -35,7 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         performDummyQuery()
 
-        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))
+        NavigationUI.setupActionBarWithNavController(
+            this,
+            findNavController(R.id.nav_host_fragment)
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     fun setSupportActionBarColor(color: Int) {
         supportActionBar?.apply {
             setBackgroundDrawable(ColorDrawable(color))

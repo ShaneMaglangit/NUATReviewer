@@ -21,7 +21,7 @@ class LessonViewModel(private val database: TopicDatabaseDao, topicId: Long) : V
         }
     }
 
-    private suspend fun getTopic(topicId: Long) : Topic {
+    private suspend fun getTopic(topicId: Long): Topic {
         return withContext(Dispatchers.IO) {
             database.getTopic(topicId)
         }

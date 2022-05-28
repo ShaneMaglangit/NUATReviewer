@@ -12,10 +12,10 @@
         <action
             android:id="@+id/action_welcomeFragment_to_topicFragment"
             app:destination="@id/topicFragment"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_open_exit" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_welcomeFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
@@ -27,13 +27,20 @@
         <action
             android:id="@+id/action_topicFragment_to_lessonFragment"
             app:destination="@id/lessonFragment"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="subject"
             app:argType="string" />
+        <action
+            android:id="@+id/action_topicFragment_to_addTopicFragment"
+            app:destination="@id/addTopicFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/lessonFragment"
@@ -46,6 +53,9 @@
             android:id="@+id/action_lessonFragment_to_questionFragment"
             app:destination="@id/questionFragment"
             app:popUpTo="@+id/lessonFragment" />
+        <action
+            android:id="@+id/action_lessonFragment_to_addQuestionFragment"
+            app:destination="@id/addQuestionFragment" />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
@@ -57,10 +67,10 @@
         <action
             android:id="@+id/action_questionFragment_to_resultFragment"
             app:destination="@id/resultFragment"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_open_exit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/lessonFragment" />
     </fragment>
     <fragment
@@ -80,4 +90,23 @@
         android:name="com.shanemaglangit.nuatreviewer.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/addTopicFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.topic.AddTopicFragment"
+        android:label="AddTopicFragment">
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="categories"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuestionFragment"
+        android:name="com.shanemaglangit.nuatreviewer.ui.question.AddQuestionFragment"
+        android:label="AddQuestionFragment">
+        <argument
+            android:name="topicId"
+            app:argType="long" />
+    </fragment>
 </navigation>

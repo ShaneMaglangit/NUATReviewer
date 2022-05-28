@@ -1,15 +1,15 @@
-package com.shanemaglangit.nuatreviewer.ui.topic
+package com.shanemaglangit.nuatreviewer.ui.question
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.shanemaglangit.nuatreviewer.data.TopicDatabaseDao
 
-class TopicViewModelFactory(private val database: TopicDatabaseDao, private val subject: String) :
+class AddQuestionViewModelFactory(private val database: TopicDatabaseDao, private val topicId: Long) :
     ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(TopicViewModel::class.java)) {
-            return TopicViewModel(database, subject) as T
+        if (modelClass.isAssignableFrom(AddQuestionViewModel::class.java)) {
+            return AddQuestionViewModel(database, topicId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/about_profile"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/secondaryTextColor"
         android:textSize="16sp" />
 
@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/about_medina"
+        android:text="@string/about_delacruz"
         android:textColor="@color/secondaryTextColor"
         android:textSize="16sp" />
 
@@ -78,7 +78,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/about_malsi"
+        android:text="@string/about_lamar"
         android:textColor="@color/secondaryTextColor"
         android:textSize="16sp" />
 </LinearLayout>

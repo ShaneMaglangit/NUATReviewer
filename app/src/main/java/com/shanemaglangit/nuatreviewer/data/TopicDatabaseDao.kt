@@ -18,7 +18,7 @@ interface TopicDatabaseDao {
         topicsWithQuestion.forEach {
             val topicId = insert(it.topic)
 
-            it.questions.forEach {question ->
+            it.questions.forEach { question ->
                 question.questionTopicId = topicId
                 insert(question)
             }
@@ -26,7 +26,7 @@ interface TopicDatabaseDao {
     }
 
     @Query("SELECT * FROM topic_table WHERE topicId = :topicId")
-    fun getTopic(topicId: Long) : Topic
+    fun getTopic(topicId: Long): Topic
 
     @Query("SELECT * FROM topic_table")
     fun getAllTopic(): List<Topic>
